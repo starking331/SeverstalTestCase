@@ -39,8 +39,6 @@ CREATE TABLE delivery_detail (
                                  quantity DECIMAL(10, 2) NOT NULL,
                                  delivery_id BIGINT NOT NULL,
                                  product_id BIGINT NOT NULL,
-                                 price_id BIGINT NOT NULL,
                                  FOREIGN KEY (delivery_id) REFERENCES delivery(id),
-                                 FOREIGN KEY (product_id) REFERENCES product(id),
-                                 FOREIGN KEY (price_id) REFERENCES price(id)
+                                 FOREIGN KEY (product_id) REFERENCES product(id)
 );
