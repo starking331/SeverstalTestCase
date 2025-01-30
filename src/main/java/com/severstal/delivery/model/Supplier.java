@@ -1,10 +1,12 @@
 package com.severstal.delivery.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 
 import java.util.List;
 
 @Entity
+@Getter
 @Table(name = "supplier")
 public class Supplier extends BaseEntity {
     private String name;

@@ -1,5 +1,6 @@
 package com.severstal.delivery.controller;
 
+import com.severstal.delivery.model.DTO.DeliveryReportItem;
 import com.severstal.delivery.model.DTO.DeliveryResponse;
 import com.severstal.delivery.model.Delivery;
 import com.severstal.delivery.model.DeliveryDetail;
@@ -9,11 +10,10 @@ import com.severstal.delivery.repository.ProductRepository;
 import com.severstal.delivery.repository.SupplierRepository;
 import com.severstal.delivery.service.DeliveryService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -43,5 +43,12 @@ public class DeliveryController {
                 .toList();
 
         return deliveryService.saveDelivery(delivery, details);
+    }
+
+    @GetMapping("/report")
+    public List<DeliveryReportItem> getDeliveryReport(
+            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
+            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate) {
+        return deliveryService.getDeliveryReport(startDate, endDate);
     }
 }
